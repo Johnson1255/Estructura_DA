@@ -4,22 +4,27 @@ import java.util.Iterator;
 
 import edu.princeton.cs.algs4.StdOut;
 
-public class PilaArreglo {
+public class PilaArreglo<Item> implements Iterable<Item>{
 
-    private String[] pila;
+    private Item[] pila;
     private int n;
 
     public PilaArreglo(int max) {
-        // TODO: instanciar el arreglo para la pila
+        pila = (Item[]) new Object[max];
     }
 
-    public void push(String s) {
-        // TODO: Implementar el método
+    public void push(Item s) throws Exception {
+        if (n == pila.length)
+            throw new Exception("La pila esta llena");
+        pila[n++] = s;
     }
 
-    public String pop() throws Exception {
-        // TODO: Implementar el método
-        return null;
+    public Item pop() throws Exception {
+        if (n==0)
+            throw new Exception("La pila esta vacia");
+            Item tmp = pila[--n];
+        pila[n] = null;
+        return tmp;
     }
 
     public boolean isEmpty() {
@@ -41,8 +46,70 @@ public class PilaArreglo {
 
 
     public static void main(String[] args) throws Exception {
-        // TODO: Implementar algunos ejemplos de uso de la pila
-        StdOut.println("Ejemplo Pila");
+        PilaArreglo<String> p = new PilaArreglo<>(5);
+        assert(p.isEmpty());
+        assert(p.size()==0);
+        
+        p.push("Hola");
+        p.push("Mundo");
+        //p.push("Adios");
+
+        for(Iterator<String> i = p.iterator(); i.hasNext(); ){
+            System.out.println(i.next());
+        }
+
+
+        //Otra forma de realizar el for
+        for(String s: p){
+            System.out.println(s);
+        }
+
+        assert(!p.isEmpty());
+        assert(p.size()==2);
+
+
+        
+        assert(p.pop().equals("Mundo"));
+        assert(p.size()==1);
+        
+        PilaArreglo<Integer> q = new PilaArreglo<>(5);
+        //q.push(new Integer(null));
+        q.push(Integer.valueOf(1));
+        q.push(Integer.valueOf("2"));
+        Integer a = q.pop();
+        System.out.println(a);
+
+        Integer b = q.pop();
+        System.out.println(b);
+
+        //StdOut.println(p.pop());
+        //StdOut.println(p.size());
+
+        //System.out.println(p.pop());
+        //System.out.println(p.size());
+        
+        //System.out.println(p.pop());
+
+        //StdOut.println("Ejemplo Pila");
+    }
+
+    @Override
+    public Iterator iterator(){
+        return new IteradorParaPilas();
+    }
+
+    private class IteradorParaPilas implements Iterator<Item> {
+        int pos = n;
+
+        @Override
+        public boolean hasNext(){
+            return pos>0;
+        }
+
+        @Override
+        public Item next(){
+            return pila[--pos];
+        }
     }
 
 
