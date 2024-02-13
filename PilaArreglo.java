@@ -1,5 +1,3 @@
-package upb.ea.ea02_EstructurasBasicas;
-
 import java.util.Iterator;
 
 import edu.princeton.cs.algs4.StdOut;
