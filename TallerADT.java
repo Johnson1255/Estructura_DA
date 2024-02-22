@@ -69,4 +69,27 @@ public class TallerADT {
             return "ID de Agente = " + id + "\n" + "Tiempo Ocupado = " + tiempoOcupado;
         }
     }
+
+    class Fila{
+        private List<Persona> personas;
+
+        public Fila() {
+            this.personas = new ArrayList<>();
+        }
+
+        public void agregarPersona(Persona persona) {
+            personas.add(persona);
+        }
+
+        public Persona siguientePersona() {
+            if (!personas.isEmpty()) {
+                return personas.remove(0);
+            }
+            return null;
+        }
+
+        public String toString() {
+            return "Fila de Personas=" + personas;
+        }
+    }
 }
