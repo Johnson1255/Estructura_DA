@@ -10,10 +10,10 @@ public class TallerADT {
         private int tiempoServicio;
         private int tiempoEspera;
 
-        public Persona(int tiempoLlegada){
-            this.id = contadorId++;
+        public Persona(int id, int tiempoLlegada, int tiempoServicio) {
+            this.id = id;
             this.tiempoLlegada = tiempoLlegada;
-            this.tiempoServicio = new Random().nextInt(3300) + 300;
+            this.tiempoServicio = tiempoServicio;
             this.tiempoEspera = 0;
         }
 
@@ -89,7 +89,7 @@ public class TallerADT {
         }
 
         public String toString() {
-            return "Fila de Personas=" + personas;
+            return "Fila de Personas = " + personas;
         }
     }
 }
