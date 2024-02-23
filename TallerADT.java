@@ -120,7 +120,7 @@ public class TallerADT {
         }
 
         //Correr la simulacion
-        public void correrSimulacion(){
+        public void correrSimulation(){
             int tiempo = 0;
             int totalTiempoEspera = 0;
             int totalTiempoOcupado = 0;
@@ -166,4 +166,9 @@ public class TallerADT {
         }
 
     }
+       
 }
+
+
+
+
