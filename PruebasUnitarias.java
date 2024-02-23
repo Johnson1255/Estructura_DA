@@ -1,3 +1,5 @@
+//Las Prueban Unitarias han sido adapatadas para que funcionen correctamente con el codigo base del taller
+
 public class PruebasUnitarias {
     
     private static boolean igualdadDoubles(double a, double b) {

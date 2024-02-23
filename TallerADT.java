@@ -13,7 +13,7 @@ public class TallerADT {
         public Persona(int id, int tiempoLlegada, int tiempoServicio) {
             this.id = id;
             this.tiempoLlegada = tiempoLlegada;
-            this.tiempoServicio = tiempoServicio;
+            this.tiempoServicio = new Random().nextInt(3300) + 300;
             this.tiempoEspera = 0;
         }
 
