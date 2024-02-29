@@ -125,4 +125,47 @@ public class EjerciciosGuia {
             return item; // Retorna el item del nodo borrado
         }
     }
+
+    public class DoublyLinkedList {
+        private Node first;
+        private Node last;
+        
+        // Clase Node
+        private class Node {
+            Item item;
+            Node prev;
+            Node next;
+            
+            public Node(Item item) {
+                this.item = item;
+            }
+        }
+        
+        // Método para insertar un nodo
+        public void insertNode(Node x, Item i) {
+            Node newNode = new Node(i);  // Crear un nuevo nodo con el item i
+            
+            if (x == null) {
+                // Si x es null, la lista está vacía
+                // El nuevo nodo será tanto el primer como el último nodo
+                first = last = newNode;
+            } else {
+                // Actualizar los punteros del nuevo nodo
+                newNode.prev = x;
+                newNode.next = x.next;
+                
+                if (x == last) {
+                    // Si x es el último nodo, el nuevo nodo se convierte en el nuevo último nodo
+                    last = newNode;
+                } else {
+                    // Si x no es el último nodo, actualizar el puntero del nodo siguiente a x
+                    x.next.prev = newNode;
+                }
+                
+                // Actualizar el puntero del nodo siguiente a x
+                x.next = newNode;
+            }
+        }
+    }
+    
 }
