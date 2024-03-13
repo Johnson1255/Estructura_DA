@@ -68,6 +68,25 @@ public class Taller2 {
             ubicacion = new Punto2D(x, y);
             estaciones.add(new EstacionBase(i, ubicacion));
         }
-        return personas;
+        return estaciones;
     }
+
+    public static void asignarEstaciones(List<Persona> personas, List<EstacionBase> estaciones) {
+        double distanciaMinima;
+        double distancia;
+
+        for(Persona persona : personas){
+            distanciaMinima = Double.POSITIVE_INFINITY;
+
+            for(EstacionBase estacion : estaciones) {
+                distancia = persona.ubicacion.distancia(estacion.ubicacion);
+
+                if(distancia < distanciaMinima){
+                    distanciaMinima = distancia;
+                    persona.estacionAsociada = estacion;
+                }
+            }
+        }
+    }
+
 }
