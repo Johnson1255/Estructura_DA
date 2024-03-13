@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdOut;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -107,20 +108,20 @@ public class Taller2 {
     }
 
     public static void main(String[] args){
-        int[] valoresN = {1000, 2000, 4000, 8000, 16000};
-        int[] valoresM = {10, 50, 100};
-        int k = 10;
+        int[] valoresN = {1000, 2000, 4000, 8000, 16000}; //Personas en la red
+        int[] valoresM = {10, 50, 100}; //Estaciones base
+        int k = 10; //Repeticiones
         double tiempoPromedio;
     
         for(int M : valoresM) {
-            System.out.println("Resultados para M = " + M + ": ");
-            System.out.println("N\tTiempo Promedio");
+            StdOut.println("Resultados para M = " + M + ": ");
+            StdOut.println("N\tTiempo Promedio");
             
             for(int N : valoresN){
                 tiempoPromedio = medirTiempo(N, M, k);
-                System.out.println(N + "\t" + tiempoPromedio);
+                StdOut.println(N + "\t" + tiempoPromedio);
             }
-            System.out.println(); //Para tener una linea de separacion entre cada 'M'
+            StdOut.println(); //Para tener una linea de separacion entre cada 'M'
         }
     }
 
