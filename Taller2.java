@@ -100,7 +100,7 @@ public class Taller2 {
             inicio = System.nanoTime();
             asignarEstaciones(personas, estaciones);
             fin = System.nanoTime();
-            tiempoSegundos = (fin - inicio) / 1e9;
+            tiempoSegundos = (fin - inicio) / (1 * Math.pow(10, 9)); //Para convertir los nano segundos a segundos
             tiempoTotal += tiempoSegundos;
         }
         return tiempoTotal / k;
@@ -120,7 +120,7 @@ public class Taller2 {
                 tiempoPromedio = medirTiempo(N, M, k);
                 System.out.println(N + "\t" + tiempoPromedio);
             }
-            System.out.println();
+            System.out.println(); //Para tener una linea de separacion entre cada 'M'
         }
     }
 
