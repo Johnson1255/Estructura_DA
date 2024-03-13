@@ -106,4 +106,22 @@ public class Taller2 {
         return tiempoTotal / k;
     }
 
+    public static void main(String[] args){
+        int[] valoresN = {1000, 2000, 4000, 8000, 16000};
+        int[] valoresM = {10, 50, 100};
+        int k = 10;
+        double tiempoPromedio;
+    
+        for(int M : valoresM) {
+            System.out.println("Resultados para M = " + M + ": ");
+            System.out.println("N\tTiempo Promedio");
+            
+            for(int N : valoresN){
+                tiempoPromedio = medirTiempo(N, M, k);
+                System.out.println(N + "\t" + tiempoPromedio);
+            }
+            System.out.println();
+        }
+    }
+
 }
