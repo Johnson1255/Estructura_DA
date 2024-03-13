@@ -89,4 +89,21 @@ public class Taller2 {
         }
     }
 
+    public static double medirTiempo(int N, int M, int k) {
+        double tiempoTotal = 0;
+        double tiempoSegundos;
+        long inicio, fin;
+        List<Persona> personas = crearPersonas(N);
+        List<EstacionBase> estaciones = crearEstaciones(M);
+
+        for(int i = 0; i < k; i++){
+            inicio = System.nanoTime();
+            asignarEstaciones(personas, estaciones);
+            fin = System.nanoTime();
+            tiempoSegundos = (fin - inicio) / 1e9;
+            tiempoTotal += tiempoSegundos;
+        }
+        return tiempoTotal / k;
+    }
+
 }
