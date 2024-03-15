@@ -2,9 +2,9 @@ import edu.princeton.cs.algs4.StdOut;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
-
-class Punto2D {
+class Punto2D { //Al querer reutilizar el codigo realizado en clase he obtenido algunos problemas
     double x;
     double y;
 
@@ -31,7 +31,7 @@ class EstacionBase {
 class Persona {
     int idPersona;
     Punto2D ubicacion;
-    EstacionBase estacionAsociada;
+    EstacionBase estacionAsociada; //Ubicar la estacion en donde estan asociadas
 
     public Persona(int idPersona, Punto2D ubicacion) {
         this.idPersona = idPersona;
@@ -107,6 +107,8 @@ public class Taller2 {
         return tiempoTotal / k;
     }
 
+    //Main para probar con valores ya puestos, comentar si es que quiero poner los valores por mi cuenta
+    
     public static void main(String[] args){
         int[] valoresN = {1000, 2000, 4000, 8000, 16000}; //Personas en la red
         int[] valoresM = {10, 50, 100}; //Estaciones base
@@ -124,5 +126,21 @@ public class Taller2 {
             StdOut.println(); //Para tener una linea de separacion entre cada 'M'
         }
     }
+    
+    //Como lo pidio en el ejercicio que en el main debia preguntar los valores de N y de M
+    /*
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
+        StdOut.println()("Ingrese el número de personas: ");
+        int N = scanner.nextInt();
+
+        StdOut.println()("Ingrese el número de estaciones baseM: ");
+        int M = scanner.nextInt();
+
+        scanner.close();
+
+        StdOut.println()("Tiempo transcurrido para asignar estaciones: " + medirTiempo(N, M, M) + " segundos");
+    }
+    */
 }
