@@ -89,13 +89,13 @@ class MergeSortListaDoblementeEnlazada {
                 actual1 = actual1.next;
             } else {
                 mergeList.add(actual2.val);
-                actual2 = actual2.next
+                actual2 = actual2.next;
             }
         }
 
         while (actual1 != null) {
             mergeList.add(actual1.val);
-            actual1 = actual1.next
+            actual1 = actual1.next;
         }
 
         while (actual2 != null){
@@ -122,6 +122,49 @@ class MergeSortListaDoblementeEnlazada {
         lista.head = sortedLista.head;
         lista.tail = sortedLista.tail;
 
+    }
+}
+
+class QuickSortListaDoblementeEnlazada {
+
+    public ListaDoblementeEnlazada[] partition(ListaDoblementeEnlazada lista){
+        ListaDoblementeEnlazada menorQue = new ListaDoblementeEnlazada();
+        ListaDoblementeEnlazada mayorQue = new ListaDoblementeEnlazada();
+
+        ListNode pivote = lista.head;
+        ListNode actual = lista.head.next;
+
+        while(actual != null){
+
+            if(actual.val < pivote.val){
+                menorQue.add(actual.val);
+            } else {
+                mayorQue.add(actual.val);
+            }
+            actual = actual.next;
+        }
+        return new ListaDoblementeEnlazada[] {menorQue, mayorQue};
+    }
+
+    public void Quicksort(ListaDoblementeEnlazada lista){
+        if(lista.head == null || lista.head.next == null){
+            return;
+        }
+
+        ListaDoblementeEnlazada[] particiones = partition(lista);
+        ListaDoblementeEnlazada menorQue = particiones[0];
+        ListaDoblementeEnlazada mayorQue = particiones[1];
+
+        Quicksort(menorQue);
+        Quicksort(mayorQue);
+
+        lista.head = menorQue.head;
+        ListNode actual = menorQue.tail;
+        actual.next = new ListNode(lista.head.val);
+        actual.next.prev = actual;
+        actual.next.next = mayorQue.head;
+        mayorQue.head.prev = actual.next;
+        lista.tail = mayorQue.tail;
     }
 
 }
