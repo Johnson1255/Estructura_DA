@@ -39,17 +39,57 @@ class ListaDoblementeEnlazada {
     }
 }
 
+class MergeSortListaDoblementeEnlazada {
+
+    private int getSize(ListaDoblementeEnlazada list){
+        int size = 0;
+        ListNode current = list.head;
+
+        while(current != null){
+            size++;
+            current = current.next;
+        }
+        return size;
+    }
+
+    public ListaDoblementeEnlazada[] split(ListaDoblementeEnlazada list) {
+        ListaDoblementeEnlazada primeraMitad = new ListaDoblementeEnlazada();
+        ListaDoblementeEnlazada segundaMitad = new ListaDoblementeEnlazada();
+
+        int size = getSize(list);
+        int mid = size / 2;
+
+        ListNode current = list.head;
+        int counteo = 0;
+
+        while (current != null){
+
+            if(counteo < mid){
+                primeraMitad.add(current.val);
+            } else {
+                segundaMitad.add(current.val);
+            }
+
+            current = current.next;
+            counteo++;
+        }
+        
+        return new ListaDoblementeEnlazada[] {primeraMitad, segundaMitad};
+    }
+
+}
+
 public class Taller3 {
     public static void main(String[] args) {
         String id1 = "0001233";
         String id2 = "0009234";
         String id3 = "0005567";
         
-        String concat = id1 + id2 + id3;
+        String concatenado = id1 + id2 + id3;
         
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(concat.getBytes());
+            byte[] hash = digest.digest(concatenado.getBytes());
             
             BigInteger hashInt = new BigInteger(1, hash);
             
