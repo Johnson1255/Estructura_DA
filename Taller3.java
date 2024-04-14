@@ -77,6 +77,53 @@ class MergeSortListaDoblementeEnlazada {
         return new ListaDoblementeEnlazada[] {primeraMitad, segundaMitad};
     }
 
+    public ListaDoblementeEnlazada merge(ListaDoblementeEnlazada lista1, ListaDoblementeEnlazada lista2) {
+        ListaDoblementeEnlazada mergeList = new ListaDoblementeEnlazada();
+        ListNode actual1 = lista1.head;
+        ListNode actual2 = lista2.head;
+
+        while (actual1 != null && actual2 != null){
+
+            if(actual1.val < actual2.val) {
+                mergeList.add(actual1.val);
+                actual1 = actual1.next;
+            } else {
+                mergeList.add(actual2.val);
+                actual2 = actual2.next
+            }
+        }
+
+        while (actual1 != null) {
+            mergeList.add(actual1.val);
+            actual1 = actual1.next
+        }
+
+        while (actual2 != null){
+            mergeList.add(actual2.val);
+            actual2 = actual2.next;
+        }
+
+        return mergeList;
+    }
+
+    public void mergesort(ListaDoblementeEnlazada lista) {
+        if(lista.head == null || lista.head.next == null) {
+            return;
+        }
+
+        ListaDoblementeEnlazada[] splitListas = split(lista);
+        ListaDoblementeEnlazada primeraMitad = splitListas[0];
+        ListaDoblementeEnlazada segundaMitad = splitListas[1];
+
+        mergesort(primeraMitad);
+        mergesort(segundaMitad);
+
+        ListaDoblementeEnlazada sortedLista = merge(primeraMitad, segundaMitad);
+        lista.head = sortedLista.head;
+        lista.tail = sortedLista.tail;
+
+    }
+
 }
 
 public class Taller3 {
