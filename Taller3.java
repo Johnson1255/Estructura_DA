@@ -233,9 +233,14 @@ public class Taller3 {
 
         ListaDoblementeEnlazada ListaSorted = new ListaDoblementeEnlazada();
         ListaSorted.head = partition(menorQue).head;
-        ListaSorted.tail = menorQue.tail;
-        menorQue.tail.next = pivote;
-        pivote.prev = menorQue.tail;
+
+        if(menorQue.tail != null){
+            menorQue.tail.next = pivote;
+            pivote.prev = menorQue.tail;
+        } else {
+            ListaSorted.head = pivote;
+        }
+
         pivote.next = partition(mayorQue).head;
 
         if(pivote.next != null){
