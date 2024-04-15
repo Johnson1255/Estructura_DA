@@ -49,6 +49,17 @@ class ListaDoblementeEnlazada {
         }
         StdOut.println();
     }
+
+    public int getSize(){
+        int size = 0;
+        ListNode current = head;
+
+        while(current != null){
+            size++;
+            current = current.next;
+        }
+        return size;
+    }
 }
 
 class ListNode {
@@ -112,7 +123,7 @@ public class Taller3 {
                 nombre2 = new String(nombre2.getBytes(), StandardCharsets.UTF_8);
             } else {
                 nombre1 = hombre[StdRandom.uniform(hombre.length)];
-                nombre2 = hombreÑStdRandom.uniform[(hombre.length)]; 
+                nombre2 = hombre[StdRandom.uniform(hombre.length)]; 
             }
             String apellido1 = apellidos[StdRandom.uniform(apellidos.length)];
             String apellido2 = apellidos[StdRandom.uniform(apellidos.length)];
@@ -122,39 +133,27 @@ public class Taller3 {
         return personas;
     }
 
-    //GetSize
-    private int getSize(ListaDoblementeEnlazada list){
-        int size = 0;
-        ListNode current = list.head;
-
-        while(current != null){
-            size++;
-            current = current.next;
-        }
-        return size;
-    }
-
     //Split
     public ListaDoblementeEnlazada[] split(ListaDoblementeEnlazada list) {
         ListaDoblementeEnlazada primeraMitad = new ListaDoblementeEnlazada();
         ListaDoblementeEnlazada segundaMitad = new ListaDoblementeEnlazada();
 
-        int size = getSize(list);
+        int size = list.getSize();
         int mid = size / 2;
 
         ListNode current = list.head;
-        int counteo = 0;
+        int conteo = 0;
 
         while (current != null){
 
-            if(counteo < mid){
+            if(conteo < mid){
                 primeraMitad.add(current.val);
             } else {
                 segundaMitad.add(current.val);
             }
 
             current = current.next;
-            counteo++;
+            conteo++;
         }
         
         return new ListaDoblementeEnlazada[] {primeraMitad, segundaMitad};
@@ -266,15 +265,16 @@ public class Taller3 {
 
             java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
 
-            ListaDoblementeEnlazada personas = generar(10) //Se puede llegar a colocar la cantidad requerida
+            ListaDoblementeEnlazada personas = generar(10); //Se puede llegar a colocar la cantidad requerida
+            Taller3 taller3 = new Taller3();
 
             if(hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)){
                 StdOut.println("Hash de equipo PAR");
-                mergesort(personas);
+                taller3.mergesort(personas);
                 personas.ImprimirLista();
             } else {
                 StdOut.println("Hash de equipo impar");
-                Quicksort(personas);
+                taller3.Quicksort(personas);
                 personas.ImprimirLista();
             }
         } catch (Exception e) {
