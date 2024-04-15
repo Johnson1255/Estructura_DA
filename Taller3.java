@@ -122,39 +122,7 @@ public class Taller3 {
         return personas;
     }
 
-    public static void main(String[] args) {
-        String id1 = "0001233";
-        String id2 = "0009234";
-        String id3 = "0005567";
-
-        String concatenado = id1 + id2 + id3;
-
-        try {
-            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(concatenado.getBytes(StandardCharsets.UTF_8));
-
-            java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
-
-            ListaDoblementeEnlazada personas = generar(10) //Se puede llegar a colocar la cantidad requerida
-
-            if(hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)){
-                StdOut.println("Hash de equipo PAR");
-                mergesort(personas);
-                personas.ImprimirLista();
-            } else {
-                StdOut.println("Hash de equipo impar");
-                Quicksort(personas);
-                personas.ImprimirLista;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-}
-
-class MergeSortListaDoblementeEnlazada {
-
+    //GetSize
     private int getSize(ListaDoblementeEnlazada list){
         int size = 0;
         ListNode current = list.head;
@@ -166,6 +134,7 @@ class MergeSortListaDoblementeEnlazada {
         return size;
     }
 
+    //Split
     public ListaDoblementeEnlazada[] split(ListaDoblementeEnlazada list) {
         ListaDoblementeEnlazada primeraMitad = new ListaDoblementeEnlazada();
         ListaDoblementeEnlazada segundaMitad = new ListaDoblementeEnlazada();
@@ -191,6 +160,7 @@ class MergeSortListaDoblementeEnlazada {
         return new ListaDoblementeEnlazada[] {primeraMitad, segundaMitad};
     }
 
+    //Merge
     public ListaDoblementeEnlazada merge(ListaDoblementeEnlazada lista1, ListaDoblementeEnlazada lista2) {
         ListaDoblementeEnlazada mergeList = new ListaDoblementeEnlazada();
         ListNode actual1 = lista1.head;
@@ -220,6 +190,7 @@ class MergeSortListaDoblementeEnlazada {
         return mergeList;
     }
 
+    //MergeSort
     public void mergesort(ListaDoblementeEnlazada lista) {
         if(lista.head == null || lista.head.next == null) {
             return;
@@ -237,10 +208,8 @@ class MergeSortListaDoblementeEnlazada {
         lista.tail = sortedLista.tail;
 
     }
-}
 
-class QuickSortListaDoblementeEnlazada {
-
+    // Partition
     public ListaDoblementeEnlazada partition(ListaDoblementeEnlazada lista){
         if(lista.head == null || lista.head.next == null) {
             return lista;
@@ -279,13 +248,51 @@ class QuickSortListaDoblementeEnlazada {
         return ListaSorted;
     }
 
+    //QuickSort
     public void Quicksort(ListaDoblementeEnlazada lista){
         lista.head = partition(lista).head;
     }
 
+    public static void main(String[] args) {
+        String id1 = "0001233";
+        String id2 = "0009234";
+        String id3 = "0005567";
+
+        String concatenado = id1 + id2 + id3;
+
+        try {
+            java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(concatenado.getBytes(StandardCharsets.UTF_8));
+
+            java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
+
+            ListaDoblementeEnlazada personas = generar(10) //Se puede llegar a colocar la cantidad requerida
+
+            if(hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)){
+                StdOut.println("Hash de equipo PAR");
+                mergesort(personas);
+                personas.ImprimirLista();
+            } else {
+                StdOut.println("Hash de equipo impar");
+                Quicksort(personas);
+                personas.ImprimirLista();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
-/*public class Taller3 {
+/*class MergeSortListaDoblementeEnlazada {
+
+}
+
+class QuickSortListaDoblementeEnlazada {
+
+}
+
+public class Taller3 {
     public static void main(String[] args) {
         String id1 = "0001233";
         String id2 = "0009234";
