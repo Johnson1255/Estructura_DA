@@ -1,14 +1,35 @@
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdRandom;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
+
+class Person {
+    String nombre;
+    String apellido;
+    int edad;
+    float calificacion;
+
+    public Person(String nombre, String apellido, int edad, float calificacion){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.calificacion = calificacion;
+    }
+
+    @Override
+    public String toString(){
+        return nombre + " " + apellido + "\n Edad: " + edad + " años\n" + "Calificacion: " + calificacion;
+    }
+}
 
 class ListNode {
-    int val;
+    Person val;
     ListNode prev;
     ListNode next;
 
-    public ListNode(int val){
+    public ListNode(Person val){
         this.val = val;
     }
 }
@@ -17,7 +38,7 @@ class ListaDoblementeEnlazada {
     ListNode head;
     ListNode tail;
 
-    public void add(int val) {
+    public void add(Person val) {
         ListNode nuevoNodo = new ListNode(val);
         if(head == null){
             head = nuevoNodo;
@@ -32,10 +53,10 @@ class ListaDoblementeEnlazada {
     public void ImprimirLista(){
         ListNode current = head;
         while(current != null) {
-            System.out.println(current.val + " ");
+            StdOut.println(current.val + " ");
             current = current.next;
         }
-        System.out.println();
+        StdOut.println();
     }
 }
 
