@@ -270,18 +270,32 @@ public class Taller3 {
 
             java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
 
-            ListaDoblementeEnlazada personas = generar(10); //Se puede llegar a colocar la cantidad requerida
-            Taller3 taller3 = new Taller3();
+            for (int n = 1000; n <= 10000; n += 1000) {
+                ListaDoblementeEnlazada personas = generar(n); // Se puede llegar a colocar la cantidad requerida
+                Taller3 taller3 = new Taller3();
 
-            if(hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)){
-                StdOut.println("Hash de equipo PAR");
-                taller3.mergesort(personas);
-                personas.ImprimirLista();
-            } else {
-                StdOut.println("Hash de equipo impar");
-                taller3.Quicksort(personas);
-                personas.ImprimirLista();
+                if (hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)) {
+                    StdOut.println("Hash de equipo PAR");
+
+                    long tiempoInicio = System.currentTimeMillis();
+                    taller3.mergesort(personas);
+                    long tiempoFinal = System.currentTimeMillis();
+                    personas.ImprimirLista();
+
+                    StdOut.println("El tiempo de ejecucion de MergeSort para " + n + " elementos, fue de: " + (tiempoFinal - tiempoInicio) + " milisegundos");
+
+                } else {
+                    StdOut.println("Hash de equipo IMPAR");
+
+                    long tiempoInicio = System.currentTimeMillis();
+                    taller3.Quicksort(personas);
+                    long tiempoFinal = System.currentTimeMillis();
+                    personas.ImprimirLista();
+
+                    StdOut.println("Tiempo de ejecucion de QuickSort para " + n + " elementos, fue de: " + (tiempoFinal - tiempoInicio) + " milisegundos");
+                }
             }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
