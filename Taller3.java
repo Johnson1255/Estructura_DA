@@ -258,15 +258,11 @@ public class Taller3 {
     }
 
     public static void main(String[] args) {
-        String id1 = "0001233";
-        String id2 = "0009234";
-        String id3 = "0005567";
-
-        String concatenado = id1 + id2 + id3;
+        String ID_Johnson = "000174359"; //Ponerlo en 0001743 para que entre en el "if" por si se quiere probar el MergeSort
 
         try {
             java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(concatenado.getBytes(StandardCharsets.UTF_8));
+            byte[] hash = digest.digest(ID_Johnson.getBytes(StandardCharsets.UTF_8));
 
             java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
 
