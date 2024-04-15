@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -32,6 +33,69 @@ class ListNode {
     public ListNode(Person val){
         this.val = val;
     }
+}
+
+public class Taller3 {
+
+    private static String[] mujer = { "Isabella", "Olivia", "Alexis", "Sofía", "Victoria", "Amelia", "Alexa", "Julia",
+            "Camila", "Alexandra", "Maya", "Andrea", "Ariana", "María", "Eva", "Angelina", "Valeria", "Natalia",
+            "Isabel", "Sara", "Liliana", "Adriana", "Juliana", "Gabriela", "Daniela", "Valentina", "Lila", "Vivian",
+            "Nora", "Ángela", "Elena", "Clara", "Eliana", "Alana", "Miranda", "Amanda", "Diana", "Ana", "Penélope",
+            "Aurora", "Alexandría", "Lola", "Alicia", "Amaya", "Alexia", "Jazmín", "Mariana", "Alina", "Lucía",
+            "Fátima", "Ximena", "Laura", "Cecilia", "Alejandra", "Esmeralda", "Verónica", "Daniella", "Miriam",
+            "Carmen", "Iris", "Guadalupe", "Selena", "Fernanda", "Angélica", "Emilia", "Lía", "Tatiana", "Mónica",
+            "Carolina", "Jimena", "Dulce", "Talía", "Estrella", "Brenda", "Lilian", "Paola", "Serena", "Celeste",
+            "Viviana", "Elisa", "Melina", "Gloria", "Claudia", "Sandra", "Marisol", "Asia", "Ada", "Rosa", "Isabela",
+            "Regina", "Elsa", "Perla", "Raquel", "Virginia", "Patricia", "Linda", "Marina", "Leila", "América",
+            "Mercedes" };
+
+    private static String[] hombre = { "Daniel", "David", "Gabriel", "Benjamín", "Samuel", "Lucas", "Ángel", "José",
+            "Adrián", "Sebastián", "Xavier", "Juan", "Luis", "Diego", "Óliver", "Carlos", "Jesús", "Alex", "Max",
+            "Alejandro", "Antonio", "Miguel", "Víctor", "Joel", "Santiago", "Elías", "Iván", "Óscar", "Leonardo",
+            "Eduardo", "Alan", "Nicolás", "Jorge", "Omar", "Paúl", "Andrés", "Julián", "Josué", "Román", "Fernando",
+            "Javier", "Abraham", "Ricardo", "Francisco", "César", "Mario", "Manuel", "Édgar", "Alexis", "Israel",
+            "Mateo", "Héctor", "Sergio", "Emiliano", "Simón", "Rafael", "Martín", "Marco", "Roberto", "Pedro",
+            "Emanuel", "Abel", "Rubén", "Fabián", "Emilio", "Joaquín", "Marcos", "Lorenzo", "Armando", "Adán", "Raúl",
+            "Julio", "Enrique", "Gerardo", "Pablo", "Jaime", "Saúl", "Esteban", "Gustavo", "Rodrigo", "Arturo",
+            "Mauricio", "Orlando", "Hugo", "Salvador", "Alfredo", "Maximiliano", "Ramón", "Ernesto", "Tobías", "Abram",
+            "Noé", "Guillermo", "Ezequiel", "Lucián", "Alonzo", "Felipe", "Matías", "Tomás", "Jairo" };
+
+    private static String[] apellidos = { "González", "Muñoz", "Rojas", "Díaz", "Pérez", "Soto", "Contreras", "Silva",
+            "Martínez", "Sepúlveda", "Morales", "Rodríguez", "López", "Fuentes", "Hernández", "Torres", "Araya",
+            "Flores", "Espinoza", "Valenzuela", "Castillo", "Tapia", "Reyes", "Gutiérrez", "Castro", "Pizarro",
+            "Álvarez", "Vásquez", "Sánchez", "Fernández", "Ramírez", "Carrasco", "Gómez", "Cortés", "Herrera", "Núñez",
+            "Jara", "Vergara", "Rivera", "Figueroa", "Riquelme", "García", "Miranda", "Bravo", "Vera", "Molina", "Vega",
+            "Campos", "Sandoval", "Orellana", "Cárdenas", "Olivares", "Alarcón", "Gallardo", "Ortiz", "Garrido",
+            "Salazar", "Guzmán", "Henríquez", "Saavedra", "Navarro", "Aguilera", "Parra", "Romero", "Aravena", "Vargas",
+            "Vázquez", "Cáceres", "Yáñez", "Leiva", "Escobar", "Ruiz", "Valdés", "Vidal", "Salinas", "Zúñiga", "Peña",
+            "Godoy", "Lagos", "Maldonado", "Bustos", "Medina", "Pino", "Palma", "Moreno", "Sanhueza", "Carvajal",
+            "Navarrete", "Sáez", "Alvarado", "Donoso", "Poblete", "Bustamante", "Toro", "Ortega", "Venegas", "Guerrero",
+            "Mendoza", "Farías", "San", "Martín" };
+
+    public static ListaDoblementeEnlazada generar(int n) {
+        ListaDoblementeEnlazada personas = new ListaDoblementeEnlazada();
+
+        for(int i = 0; i < n; i++){
+            int genero = StdRandom.uniform(0,2);
+            String nombre1, nombre2;
+
+            if(genero == 0){
+                nombre1 = mujer[StdRandom.uniform(mujer.length)];
+                nombre1 = new String(nombre1.getBytes(), StandardCharsets.UTF_8);
+                nombre2 = mujer[StdRandom.uniform(mujer.length)];
+                nombre2 = new String(nombre2.getBytes(), StandardCharsets.UTF_8);
+            } else {
+                nombre1 = hombre[StdRandom.uniform(hombre.length)];
+                nombre2 = hombreÑStdRandom.uniform[(hombre.length)]; 
+            }
+            String apellido1 = apellidos[StdRandom.uniform(apellidos.length)];
+            String apellido2 = apellidos[StdRandom.uniform(apellidos.length)];
+            Person p = new Person(nombre1 + " " + nombre2, apellido1 + " " + apellido2, StdRandom.uniform(0, 80), (float) StdRandom.uniform(2.0, 100.0));
+            personas.add(p);
+        }
+        return personas;
+    }
+
 }
 
 class ListaDoblementeEnlazada {
@@ -105,7 +169,7 @@ class MergeSortListaDoblementeEnlazada {
 
         while (actual1 != null && actual2 != null){
 
-            if(actual1.val < actual2.val) {
+            if(actual1.val.apellido.compareTo(actual2.val.apellido) < 0 || (actual1.val.apellido.compareTo(actual2.val.apellido) == 0 && actual1.val.nombre.compareTo(actual2.val.nombre) < 0)) {
                 mergeList.add(actual1.val);
                 actual1 = actual1.next;
             } else {
@@ -148,49 +212,51 @@ class MergeSortListaDoblementeEnlazada {
 
 class QuickSortListaDoblementeEnlazada {
 
-    public ListaDoblementeEnlazada[] partition(ListaDoblementeEnlazada lista){
+    public ListaDoblementeEnlazada partition(ListaDoblementeEnlazada lista){
+        if(lista.head == null || lista.head.next == null) {
+            return lista;
+        }
+        
         ListaDoblementeEnlazada menorQue = new ListaDoblementeEnlazada();
         ListaDoblementeEnlazada mayorQue = new ListaDoblementeEnlazada();
 
         ListNode pivote = lista.head;
         ListNode actual = lista.head.next;
+        lista.head = lista.head.next;
 
         while(actual != null){
 
-            if(actual.val < pivote.val){
+            if(actual.val.apellido.compareTo(pivote.val.apellido) < 0 || (actual.val.apellido.compareTo(pivote.val.apellido) == 0 && actual.val.nombre.compareTo(pivote.val.nombre) < 0)){
                 menorQue.add(actual.val);
             } else {
                 mayorQue.add(actual.val);
             }
             actual = actual.next;
         }
-        return new ListaDoblementeEnlazada[] {menorQue, mayorQue};
+
+        ListaDoblementeEnlazada ListaSorted = new ListaDoblementeEnlazada();
+        ListaSorted.head = partition(menorQue).head;
+        ListaSorted.tail = menorQue.tail;
+        menorQue.tail.next = pivote;
+        pivote.prev = menorQue.tail;
+        pivote.next = partition(mayorQue).head;
+
+        if(pivote.next != null){
+            pivote.next.prev = pivote;
+        } else {
+            ListaSorted.tail = pivote;
+        }
+
+        return ListaSorted;
     }
 
     public void Quicksort(ListaDoblementeEnlazada lista){
-        if(lista.head == null || lista.head.next == null){
-            return;
-        }
-
-        ListaDoblementeEnlazada[] particiones = partition(lista);
-        ListaDoblementeEnlazada menorQue = particiones[0];
-        ListaDoblementeEnlazada mayorQue = particiones[1];
-
-        Quicksort(menorQue);
-        Quicksort(mayorQue);
-
-        lista.head = menorQue.head;
-        ListNode actual = menorQue.tail;
-        actual.next = new ListNode(lista.head.val);
-        actual.next.prev = actual;
-        actual.next.next = mayorQue.head;
-        mayorQue.head.prev = actual.next;
-        lista.tail = mayorQue.tail;
+        lista.head = partition(lista).head;
     }
 
 }
 
-public class Taller3 {
+/*public class Taller3 {
     public static void main(String[] args) {
         String id1 = "0001233";
         String id2 = "0009234";
@@ -216,4 +282,4 @@ public class Taller3 {
             e.printStackTrace();
         }
     }
-}
+}*/
