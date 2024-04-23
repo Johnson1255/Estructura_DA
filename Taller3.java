@@ -9,19 +9,15 @@ import java.security.NoSuchAlgorithmException;
 class Person {
     String nombre;
     String apellido;
-    int edad;
-    float calificacion;
 
-    public Person(String nombre, String apellido, int edad, float calificacion){
+    public Person(String nombre, String apellido){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.edad = edad;
-        this.calificacion = calificacion;
     }
 
     @Override
     public String toString(){
-        return nombre + " " + apellido + "\n Edad: " + edad + " años\n" + "Calificacion: " + calificacion;
+        return nombre + " " + apellido;
     }
 }
 
@@ -127,7 +123,7 @@ public class Taller3 {
             }
             String apellido1 = apellidos[StdRandom.uniform(apellidos.length)];
             String apellido2 = apellidos[StdRandom.uniform(apellidos.length)];
-            Person p = new Person(nombre1 + " " + nombre2, apellido1 + " " + apellido2, StdRandom.uniform(0, 80), (float) StdRandom.uniform(2.0, 100.0));
+            Person p = new Person(nombre1 + " " + nombre2, apellido1 + " " + apellido2);
             personas.add(p);
         }
         return personas;
@@ -258,7 +254,7 @@ public class Taller3 {
     }
 
     public static void main(String[] args) {
-        String ID_Johnson = "000174359"; //Ponerlo en 0001743 para que entre en el "if" por si se quiere probar el MergeSort
+        String ID_Johnson = "000174359"; //Ponerlo en 0001743 para que entre en el "if" por si se quiere probar el MergeSort, es decir PAR
 
         try {
             java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
@@ -267,7 +263,7 @@ public class Taller3 {
             java.math.BigInteger hashInt = new java.math.BigInteger(1, hash);
 
             for (int n = 1000; n <= 10000; n += 1000) {
-                ListaDoblementeEnlazada personas = generar(n); // Se puede llegar a colocar la cantidad requerida
+                ListaDoblementeEnlazada personas = generar(n); // Se puede llegar a colocar la cantidad requerida quitandolo del for
                 Taller3 taller3 = new Taller3();
 
                 if (hashInt.mod(java.math.BigInteger.valueOf(2)).equals(java.math.BigInteger.ZERO)) {
