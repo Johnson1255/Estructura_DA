@@ -1,4 +1,9 @@
 import java.util.PriorityQueue;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TallerOpcional {
     private static class Punto2D{
@@ -81,5 +86,23 @@ public class TallerOpcional {
             }
         }
         return uf.conteo;
+    }
+
+    public static Punto2D[] leerPuntos(String filename) throws IOException{
+        List<Punto2D> puntos = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        String linea;
+        String[] valores;
+        double x, y;
+
+        while((linea = br.readLine()) != null){
+            valores = linea.split(",");
+            x = Double.parseDouble(valores[0]);
+            y = Double.parseDouble(valores[1]);
+            puntos.add(new Punto2D(x, y));
+        }
+        br.close();
+
+        return puntos.toArray(new Punto2D[0]);
     }
 }
