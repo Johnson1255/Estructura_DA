@@ -53,4 +53,33 @@ public class TallerOpcional {
             conteo--;
         }
     }
+
+    public int clusterizar(Punto2D[] puntos, double Dmax){
+        int n = puntos.length;
+        double distancia;
+        int[] edge;
+        int u, v;
+        UnionFind uf = new UnionFind(n);
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Double.compare(a[2], b[2]));
+
+        for(int i = 0; i < n; i++){
+            for(int j = i; j < n; j++){
+                distancia = puntos[i].distancia(puntos[j]);
+                if(distancia <= Dmax){
+                    pq.add(new int[]{i, j, (int)distancia});
+                }
+            }
+        }
+
+        while (!pq.isEmpty()) {
+            edge = pq.poll();
+            u = edge[0];
+            v = edge[1];
+
+            if(uf.find(u) != uf.find(v)){
+                uf.union(u, v);
+            }
+        }
+        return uf.conteo;
+    }
 }
