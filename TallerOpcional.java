@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TallerOpcional {
     private static class Punto2D{
@@ -104,5 +106,38 @@ public class TallerOpcional {
         br.close();
 
         return puntos.toArray(new Punto2D[0]);
+    }
+
+    public int[] clasificar(Punto2D p, Punto2D[] puntos, int k){
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Double.compare(a[2], b[2]));
+        double distancia;
+        Map<Integer, Integer> frecuencia = new HashMap<>();
+        int indice, componente;
+        int maxFrecuencia = 0;
+        int cluster = -1;
+
+        for(int i = 0; i < puntos.length; i++){
+            distancia = p.distancia(puntos[i]);
+            pq.add(new int[]{i, (int)distancia});
+
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+
+        while(!pq.isEmpty()){
+            indice = pq.poll()[0];
+            componente = find(indice);
+            frecuencia.put(componente, frecuencia.getOrDefault(componente, 0) + 1);
+        }
+
+        for(Map.Entry<Integer, Integer> entry : frecuencia.entrySet()){
+            if(entry.getValue() > maxFrecuencia){
+                maxFrecuencia = entry.getValue();
+                cluster = entry.getKey()
+            }
+        }
+
+        return new int[]{cluster, maxFrecuencia};
     }
 }
