@@ -1,6 +1,7 @@
 import java.util.PriorityQueue;
 
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -160,7 +161,7 @@ public class TallerOpcional {
         }
 
         for(int i = 0; i < 10; i++){
-            System.out.println("Punto " + i + " pertenece al cluster " + clusters[i]);
+            StdOut.println("Punto " + i + " pertenece al cluster " + clusters[i]);
         }
     }
 
@@ -176,6 +177,29 @@ public class TallerOpcional {
             cluster = clusters[i];
             StdDraw.setPenColor(colores[cluster % colores.length]);
             StdDraw.point(puntos[i].x, puntos[i].y);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            String filename = args[0];
+            Punto2D[] puntos = leerPuntos(filename);
+            TallerOpcional clustering = new TallerOpcional();
+            double Dmax = 0.2; //Se llega a ubicar el valor entre 0.1 y 0.3
+            int numClusters = clustering.clusterizar(puntos, Dmax);
+            int[] clusters = new int[puntos.length];
+
+            StdOut.println("Numero de clusteres obtenidos: " + numClusters);
+
+            for(int i = 0; i < puntos.length; i++){
+                clusters[i] = clustering.find(i);
+            }
+
+            clustering.graficarClusters(puntos, clusters);
+            clustering.randomTest();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
