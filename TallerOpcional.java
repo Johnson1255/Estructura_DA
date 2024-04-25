@@ -140,4 +140,24 @@ public class TallerOpcional {
 
         return new int[]{cluster, maxFrecuencia};
     }
+
+    public void randomTest(){
+        Punto2D[] puntos = new Punto2D[10];
+        double x, y;
+        int[] clusters = new int[10];
+
+        for(int i = 0; i < 10; i++){
+            x = -2 + Math.random()*4;
+            y = -2 + Math.random()*4;
+            puntos[i] = new Punto2D(x, y);
+        }
+
+        for(int i = 0; i < 10; i++){
+            clusters[i] = clasificar(puntos[i], puntos, 3)[0];
+        }
+
+        for(int i = 0; i < 10; i++){
+            System.out.println("Punto " + i + " pertenece al cluster " + clusters[i]);
+        }
+    }
 }
