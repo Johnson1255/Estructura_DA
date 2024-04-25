@@ -191,17 +191,28 @@ public class TallerOpcional {
     }
 
     public static void main(String[] args) {
+        String[] filenames = {
+        "datapoints-100.csv", 
+        "datapoints-120.csv", 
+        "datapoints-150.csv", 
+        "datapoints-1000.csv", 
+        "datapoints-2500.csv", 
+        "datapoints-5000.csv", 
+        "datapoints-k=2-n=200.csv"
+    };
+
+    double Dmax = 0.2; // Puedes ajustar este valor entre 0.1 y 0.3
+
+    for (String filename : filenames) {
         try {
-            String filename = args[0];
             Punto2D[] puntos = leerPuntos(filename);
             TallerOpcional clustering = new TallerOpcional();
-            double Dmax = 0.2; //Se llega a ubicar el valor entre 0.1 y 0.3
             int numClusters = clustering.clusterizar(puntos, Dmax);
             int[] clusters = new int[puntos.length];
 
-            StdOut.println("Numero de clusteres obtenidos: " + numClusters);
+            StdOut.println("Numero de clusteres obtenidos para " + filename + ": " + numClusters);
 
-            for(int i = 0; i < puntos.length; i++){
+            for (int i = 0; i < puntos.length; i++) {
                 clusters[i] = clustering.find(i);
             }
 
@@ -211,5 +222,6 @@ public class TallerOpcional {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
     }
 }
