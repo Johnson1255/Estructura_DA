@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.awt.Color;;
 
 public class TallerOpcional {
     private static class Punto2D{
@@ -170,7 +171,7 @@ public class TallerOpcional {
         StdDraw.setXscale(0, 100);
         StdDraw.setYscale(0, 100);
 
-        String[] colores = {"RED", "GREEN", "BLUE", "YELLOW", "CYAN", "MAGENTA"};
+        Color[] colores = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.MAGENTA};
         int cluster;
 
         for(int i = 0; i < puntos.length; i++){
