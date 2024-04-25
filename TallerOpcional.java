@@ -66,6 +66,15 @@ public class TallerOpcional {
         }
     }
 
+    private int[] parent;
+
+    private int find(int i){
+        while(i != parent[i]){
+            i = parent[i];
+        }
+        return i;
+    }
+
     public int clusterizar(Punto2D[] puntos, double Dmax){
         int n = puntos.length;
         double distancia;
