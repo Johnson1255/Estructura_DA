@@ -1,4 +1,7 @@
 import java.util.PriorityQueue;
+
+import edu.princeton.cs.algs4.StdDraw;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -158,6 +161,21 @@ public class TallerOpcional {
 
         for(int i = 0; i < 10; i++){
             System.out.println("Punto " + i + " pertenece al cluster " + clusters[i]);
+        }
+    }
+
+    public void graficarClusters(Punto2D[] puntos, int[] clusters){
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.setXscale(0, 100);
+        StdDraw.setYscale(0, 100);
+
+        String[] colores = {"RED", "GREEN", "BLUE", "YELLOW", "CYAN", "MAGENTA"};
+        int cluster;
+
+        for(int i = 0; i < puntos.length; i++){
+            cluster = clusters[i];
+            StdDraw.setPenColor(colores[cluster % colores.length]);
+            StdDraw.point(puntos[i].x, puntos[i].y);
         }
     }
 }
