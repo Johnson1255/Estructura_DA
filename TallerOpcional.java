@@ -148,7 +148,7 @@ public class TallerOpcional {
         for(Map.Entry<Integer, Integer> entry : frecuencia.entrySet()){
             if(entry.getValue() > maxFrecuencia){
                 maxFrecuencia = entry.getValue();
-                cluster = entry.getKey()
+                cluster = entry.getKey();
             }
         }
 
@@ -188,6 +188,10 @@ public class TallerOpcional {
             StdDraw.setPenColor(colores[cluster % colores.length]);
             StdDraw.point(puntos[i].x, puntos[i].y);
         }
+    }
+
+    public TallerOpcional(){
+        parent = new int[10];
     }
 
     public static void main(String[] args) {
