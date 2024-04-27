@@ -190,24 +190,28 @@ public class TallerOpcional {
         }
     }
 
-    public TallerOpcional(){
-        parent = new int[10];
-    }
-
     public static void main(String[] args) {
         String[] filenames = {
-        "datapoints-100.csv", 
-        "datapoints-120.csv", 
-        "datapoints-150.csv", 
-        "datapoints-1000.csv", 
-        "datapoints-2500.csv", 
-        "datapoints-5000.csv", 
-        "datapoints-k=2-n=200.csv"
-    };
+                "datapoints-100.csv",
+                "datapoints-120.csv",
+                "datapoints-150.csv",
+                "datapoints-1000.csv",
+                "datapoints-2500.csv",
+                "datapoints-5000.csv",
+                "datapoints-k=2-n=200.csv"
+        };
 
-    double Dmax = 0.2; // Puedes ajustar este valor entre 0.1 y 0.3
+        String filename = "datapoints-100.csv";
+        // String filename = "datapoints-120.csv";
+        // String filename = "datapoints-150.csv";
+        // String filename = "datapoints-1000.csv";
+        // String filename = "datapoints-2500.csv";
+        // String filename = "datapoints-5000.csv";
+        // String filename = "datapoints-k=2-n=200.csv";
 
-    for (String filename : filenames) {
+        double Dmax = 0.2; // Puedes ajustar este valor entre 0.1 y 0.3
+
+        // for (String filename : filenames) {
         try {
             Punto2D[] puntos = leerPuntos(filename);
             TallerOpcional clustering = new TallerOpcional();
@@ -215,6 +219,11 @@ public class TallerOpcional {
             int[] clusters = new int[puntos.length];
 
             StdOut.println("Numero de clusteres obtenidos para " + filename + ": " + numClusters);
+
+            clustering.parent = new int[puntos.length];
+            for (int i = 0; i < puntos.length; i++) {
+                clustering.parent[i] = i;
+            }
 
             for (int i = 0; i < puntos.length; i++) {
                 clusters[i] = clustering.find(i);
@@ -226,6 +235,6 @@ public class TallerOpcional {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+        // }
     }
 }
