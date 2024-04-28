@@ -212,6 +212,7 @@ public class TallerOpcional {
 
         //Arreglos con cada nombre de los archivos, para realizar la actividad de forma consecutiva
         //Quitar el comentario del filenames y del for del main si se llega a utilizar
+
         /*
         String[] filenames = {
                 "datapoints-100.csv",
@@ -226,6 +227,7 @@ public class TallerOpcional {
 
         //Comentarios con el nombre del archivo de manera individual, para probar el ejercicio uno a uno
         //Si se quiere llegar a utilizar comentar el for (String filename : filenames) y elegir el documento con el que se quiere realizar la prueba
+
         String filename = "datapoints-100.csv";
         //String filename = "datapoints-120.csv";
         //String filename = "datapoints-150.csv";
@@ -236,30 +238,37 @@ public class TallerOpcional {
 
         double Dmax = 0.2; // Puedes ajustar este valor entre 0.1 y 0.3
 
-        // for (String filename : filenames) { //Quitar el for comentado si se va a utilizar el arreglo de los archivos de forma consecutiva sin pausas
-        try {
-            Punto2D[] puntos = leerPuntos(filename);
-            TallerOpcional clustering = new TallerOpcional();
-            int numClusters = clustering.clusterizar(puntos, Dmax);
-            int[] clusters = new int[puntos.length];
+        //for (String filename : filenames) { //Quitar el for comentado si se va a utilizar el arreglo de los archivos de forma consecutiva sin pausas
+            try {
+                long tiempoInicio = System.nanoTime();
+                Punto2D[] puntos = leerPuntos(filename);
+                TallerOpcional clustering = new TallerOpcional();
+                int numClusters = clustering.clusterizar(puntos, Dmax);
+                int[] clusters = new int[puntos.length];
 
-            StdOut.println("Numero de clusteres obtenidos para " + filename + ": " + numClusters);
+                StdOut.println("Numero de clusteres obtenidos para " + filename + ": " + numClusters);
 
-            clustering.parent = new int[puntos.length];
-            for (int i = 0; i < puntos.length; i++) {
-                clustering.parent[i] = i;
+                clustering.parent = new int[puntos.length];
+                for (int i = 0; i < puntos.length; i++) {
+                    clustering.parent[i] = i;
+                }
+
+                for (int i = 0; i < puntos.length; i++) {
+                    clusters[i] = clustering.find(i);
+                }
+
+                clustering.graficarClusters(puntos, clusters);
+                clustering.randomTest();
+
+                // Para calcular el tiempo de la ejecucion
+                long tiempoFinal = System.nanoTime();
+                long duracion = (tiempoFinal - tiempoInicio) / 1000000;
+
+                StdOut.println("Tiempo de ejecución para " + filename + ": " + duracion + " ms");
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            for (int i = 0; i < puntos.length; i++) {
-                clusters[i] = clustering.find(i);
-            }
-
-            clustering.graficarClusters(puntos, clusters);
-            clustering.randomTest();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // } //Quitar la llave comentada si se llega a utilizar el for comentado de arriba
+        //} //Quitar la llave comentada si se llega a utilizar el for comentado de arriba
     }
 }
