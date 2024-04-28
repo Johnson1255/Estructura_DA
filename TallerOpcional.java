@@ -132,7 +132,7 @@ public class TallerOpcional {
 
         for(int i = 0; i < puntos.length; i++){
             distancia = p.distancia(puntos[i]);
-            pq.add(new int[]{i, (int)distancia});
+            pq.add(new int[]{i, (int)distancia, 0});
 
             if(pq.size() > k){
                 pq.poll();
@@ -176,9 +176,9 @@ public class TallerOpcional {
     }
 
     public void graficarClusters(Punto2D[] puntos, int[] clusters){
-        StdDraw.setCanvasSize(600, 600);
-        StdDraw.setXscale(0, 100);
-        StdDraw.setYscale(0, 100);
+        StdDraw.setCanvasSize(500, 500);
+        StdDraw.setXscale(-2, 2);
+        StdDraw.setYscale(-2, 2);
 
         Color[] colores = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.CYAN, Color.MAGENTA};
         int cluster;
@@ -190,7 +190,29 @@ public class TallerOpcional {
         }
     }
 
+    public void ajustarEscala(Punto2D[] puntos) {
+        double minX = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY;
+        double minY = Double.POSITIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+
+        for (Punto2D punto : puntos) {
+            minX = Math.min(minX, punto.x);
+            maxX = Math.max(maxX, punto.x);
+            minY = Math.min(minY, punto.y);
+            maxY = Math.max(maxY, punto.y);
+        }
+
+        double padding = 0.1;
+        StdDraw.setXscale(minX - padding, maxX + padding);
+        StdDraw.setYscale(minY - padding, maxY + padding);
+    }
+
     public static void main(String[] args) {
+
+        //Arreglos con cada nombre de los archivos, para realizar la actividad de forma consecutiva
+        //Quitar el comentario del filenames y del for del main si se llega a utilizar
+        /*
         String[] filenames = {
                 "datapoints-100.csv",
                 "datapoints-120.csv",
@@ -199,19 +221,22 @@ public class TallerOpcional {
                 "datapoints-2500.csv",
                 "datapoints-5000.csv",
                 "datapoints-k=2-n=200.csv"
-        };
+        };  */
 
+
+        //Comentarios con el nombre del archivo de manera individual, para probar el ejercicio uno a uno
+        //Si se quiere llegar a utilizar comentar el for (String filename : filenames) y elegir el documento con el que se quiere realizar la prueba
         String filename = "datapoints-100.csv";
-        // String filename = "datapoints-120.csv";
-        // String filename = "datapoints-150.csv";
-        // String filename = "datapoints-1000.csv";
-        // String filename = "datapoints-2500.csv";
-        // String filename = "datapoints-5000.csv";
-        // String filename = "datapoints-k=2-n=200.csv";
+        //String filename = "datapoints-120.csv";
+        //String filename = "datapoints-150.csv";
+        //String filename = "datapoints-1000.csv";
+        //String filename = "datapoints-2500.csv";
+        //String filename = "datapoints-5000.csv";
+        //String filename = "datapoints-k=2-n=200.csv";
 
         double Dmax = 0.2; // Puedes ajustar este valor entre 0.1 y 0.3
 
-        // for (String filename : filenames) {
+        // for (String filename : filenames) { //Quitar el for comentado si se va a utilizar el arreglo de los archivos de forma consecutiva sin pausas
         try {
             Punto2D[] puntos = leerPuntos(filename);
             TallerOpcional clustering = new TallerOpcional();
@@ -235,6 +260,6 @@ public class TallerOpcional {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // }
+        // } //Quitar la llave comentada si se llega a utilizar el for comentado de arriba
     }
 }
