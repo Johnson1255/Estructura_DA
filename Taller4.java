@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import edu.princeton.cs.algs4.StdOut;
 
@@ -152,4 +153,21 @@ public class Taller4 {
             StdOut.println("Producto: " + entrada.getKey() + ", Puntaje Total: " + entrada.getValue());
         }
     }
+
+    //Creacion de arbol de busqueda para las reseñas
+    public static TreeMap<Date, List<Taller4>> reviewsPorFecha(List<Taller4> reviews){
+        TreeMap<Date, List<Taller4>> reviewsPorFecha = new TreeMap<>();
+        Date fecha;
+
+        for(Taller4 review : reviews){
+            fecha = review.getTimeStamp();
+
+            if(!reviewsPorFecha.containsKey(fecha)){
+                reviewsPorFecha.put(fecha, new ArrayList<>());
+            }
+            reviewsPorFecha.get(fecha).add(review);
+        }
+        return reviewsPorFecha;
+    }
+
 }
