@@ -170,4 +170,17 @@ public class Taller4 {
         return reviewsPorFecha;
     }
 
+    //Imprimir lista de reseñas limitadas a 30 caracteres
+    public static void imprimirReseñas(List<Taller4> reviews){
+        for(Taller4 review : reviews){
+            StdOut.println("ID: " + review.getID().substring(0, Math.min(30, review.getID().length())) + 
+            ", ProductID: " + review.getProductID().substring(0, Math.min(30, review.getProductID().length())) + 
+            ", UserID: " + review.getUserID().substring(0, Math.min(30, review.getUserID().length())) + 
+            ", ProfileName: " + review.getProfileName().substring(0, Math.min(30, review.getProfileName().length())) + 
+            ", Score: " + review.getScore() + 
+            ", TimeStamp: " + review.getTimeStamp() + 
+            ", Summary: " + review.getSummary().substring(0, Math.min(30, review.getSummary().length())) + 
+            ", Text: " + review.getText().substring(0, Math.min(30, review.getText().length())));
+        }
+    }
 }
