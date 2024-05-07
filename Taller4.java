@@ -31,6 +31,46 @@ public class Taller4 {
         this.text = text;
     }
 
+    public String getID(){
+        return ID;
+    }
+
+    public String getProductID(){
+        return productID;
+    }
+
+    public String getUserID(){
+        return userID;
+    }
+
+    public String getProfileName(){
+        return profileName;
+    }
+
+    public int getHelpfulnessNumerator() {
+        return helpfulnessNumerator;
+    }
+
+    public int getHelpfulnessDenominator() {
+        return helpfulnessDenominator;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public Date getTimeStamp() {
+        return timeStamp;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getText() {
+        return text;
+    }
+
     @Override
     public String toString(){
         return "Review { " + "ID del Producto: " + productID + "\n" + "ID del Usuario: " + userID + "\n Puntaje: " + score + "\n Tiempo: " + timestamp;
