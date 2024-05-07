@@ -104,8 +104,16 @@ public class Taller4 {
         try {
             br = new BufferedReader(new FileReader(ruta));
 
-            while((line = br.readLine()) != null){
-                data = line.split(simboloSeparar);
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                // Utilizar expresiones regulares para dividir la línea respetando las comillas
+                data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                // Eliminar las comillas de los datos
+                for (int i = 0; i < data.length; i++) {
+                    data[i] = data[i].replaceAll("^\"|\"$", "");
+                }
+                // Crear el objeto Review y agregarlo a la lista
                 reviews.add(new Taller4(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), Long.parseLong(data[7]), data[8], data[9]));
             }
 
@@ -200,7 +208,13 @@ public class Taller4 {
     }
 
     public static void main(String[] args) {
-        List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews.csv"); //Poner la ruta al archivo cvs de los productos de amazon
+        //Poner la ruta al archivo cvs de los productos de amazon, en este ejercicio esta con los datos de mi pc y es importante el doble back slash
+
+        //List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews.csv"); //Con los archivos completos
+        //List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews-Part-aa.csv"); //Parte aa del archivo
+        //List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews-Part-ab.csv"); //Parte ab del archivo
+        List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews-Part-ac.csv"); //Parte ac del archivo
+        
         Map<String, Integer> puntajesTotales = puntajeTotal(reviews);
 
         //Uso del puntaje total
