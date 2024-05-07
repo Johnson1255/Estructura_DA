@@ -183,4 +183,19 @@ public class Taller4 {
             ", Text: " + review.getText().substring(0, Math.min(30, review.getText().length())));
         }
     }
+
+    //Consulta el Top-M en rango de fechas
+    public static void listarTopMPorRango(Map<String, Integer> puntajes, TreeMap<Date, List<Taller4>> reviewsPorFecha, Date fechaInicio, Date fechaFinal, int m){
+        TreeMap<Date, List<Taller4>> subMap = new TreeMap<>(reviewsPorFecha.subMap(fechaInicio, true, fechaFinal, true));
+        List<Taller4> reviewsEnRango = new ArrayList<>();
+        Map<String, Integer> puntajesEnRango;
+
+        for(List<Taller4> list : subMap.values()){
+            reviewsEnRango.addAll(list);
+        }
+
+        puntajesEnRango = puntajeTotal(reviewsEnRango);
+        listarTopM(puntajesEnRango, m);
+
+    }
 }
