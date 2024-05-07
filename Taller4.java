@@ -6,16 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Taller4 {
+    private String ID;
     private String productID;
     private String userID;
+    private String profileName;
+    private int helpfulnessNumerator;
+    private int helpfulnessDenominator;
     private int score;
-    private Date timestamp;
+    private Date timeStamp;
+    private String summary;
+    private String text;
 
-    public Taller4(String productID, String userID, int score, Date timestamp){
+
+    public Taller4(String ID, String productID, String userID, String profileName, int helpfulnessNumerator, int helpfulnessDenominator, int score, long timeStamp, String summary, String text){
+        this.ID = ID;
         this.productID = productID;
         this.userID = userID;
+        this.profileName = profileName;
+        this.helpfulnessNumerator = helpfulnessNumerator;
+        this.helpfulnessDenominator = helpfulnessDenominator;
         this.score = score;
-        this.timestamp = timestamp;
+        this.timeStamp = new Date(timeStamp * 1000);
+        this.summary = summary;
+        this.text = text;
     }
 
     @Override
