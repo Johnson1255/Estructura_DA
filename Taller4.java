@@ -4,10 +4,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.princeton.cs.algs4.StdOut;
 
 public class Taller4 {
     private String ID;
@@ -136,5 +138,18 @@ public class Taller4 {
         }
 
         return puntajes;
+    }
+
+    //Listar los Top-M productos en orden descendente depende del puntaje
+    public static void listarTopM(Map<String, Integer> puntajes, int m){
+        List<Map.Entry<String, Integer>> puntajesList = new ArrayList<>(puntajes.entrySet());
+        puntajesList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        StdOut.println("Top-" + m + " Productos: ");
+
+        for(int i = 0; i < Math.min(m, puntajesList.size()); i++){
+            Map.Entry<String, Integer> entrada = puntajesList.get(i);
+            StdOut.println("Producto: " + entrada.getKey() + ", Puntaje Total: " + entrada.getValue());
+        }
     }
 }
