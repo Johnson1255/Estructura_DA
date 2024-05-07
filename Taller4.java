@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Taller4 {
     private String ID;
@@ -88,6 +90,7 @@ public class Taller4 {
         ", Text = " + text + " }";
     }
 
+    //Lectura de Cvs y devolucion de la lista de los Reviews
     public static List<Taller4> leerCsv(String ruta){
         List<Taller4> reviews = new ArrayList<>();
         BufferedReader br = null;
@@ -118,6 +121,20 @@ public class Taller4 {
         }
 
         return reviews;
+    }
 
+    //Calcular el puntaje total de cada producto
+    public static Map<String, Integer> puntajeTotal(List<Taller4> reviews){
+        Map<String, Integer> puntajes = new HashMap<>();
+        String productId;
+        int score;
+
+        for(Taller4 review : reviews){
+            productId = review.getProductID();
+            score = review.getScore();
+            puntajes.put(productId, puntajes.getOrDefault(productId, 0) + score);
+        }
+
+        return puntajes;
     }
 }
