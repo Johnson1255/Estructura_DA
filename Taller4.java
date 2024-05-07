@@ -198,4 +198,36 @@ public class Taller4 {
         listarTopM(puntajesEnRango, m);
 
     }
+
+    public static void main(String[] args) {
+        List<Taller4> reviews = leerCsv("C:\\Users\\Johnson\\Downloads\\Dato de prueba\\Reviews.csv"); //Poner la ruta al archivo cvs de los productos de amazon
+        Map<String, Integer> puntajesTotales = puntajeTotal(reviews);
+
+        //Uso del puntaje total
+        StdOut.println("Puntajes Totales: ");
+        for(Map.Entry<String, Integer> entrada : puntajesTotales.entrySet()){
+            StdOut.println("Producto: " + entrada.getKey() + ", Puntaje Total: " + entrada.getValue());
+        }
+
+        //Uso del listarTopM
+        int topM = 5; //Este numero puede llegar a ser variable depende de cuantos productos se quiera representar
+        StdOut.println("\nTop-" + topM + " productos: ");
+        listarTopM(puntajesTotales, topM);
+
+        //Uso de los reviewsFecha
+        TreeMap<Date, List<Taller4>> reviewsPorFecha = reviewsPorFecha(reviews);
+        StdOut.println("\nReseñas por fecha: ");
+        for(Map.Entry<Date, List<Taller4>> entrada : reviewsPorFecha.entrySet()){
+            StdOut.println("Fecha: " + entrada.getKey());
+            imprimirReseñas(entrada.getValue());
+        }
+
+        //Uso de listarTopM por rango
+        Date fechaInicial = new Date();
+        Date fechaFinal = new Date();
+        int topMRango = 5; //Lo mismo que con lo de listar top, este numero se puede cambiar depende de la cantidad de productos que se quiera ver
+
+        StdOut.println("\nTop-" + topMRango + " productos en el rango de fechas: ");
+        listarTopMPorRango(puntajesTotales, reviewsPorFecha, fechaInicial, fechaFinal, topMRango);
+    }
 }
