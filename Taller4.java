@@ -2,8 +2,10 @@ import java.util.Date;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class Taller4 {
     private String ID;
@@ -72,25 +74,50 @@ public class Taller4 {
     }
 
     @Override
-    public String toString(){
-        return "Review { " + "ID del Producto: " + productID + "\n" + "ID del Usuario: " + userID + "\n Puntaje: " + score + "\n Tiempo: " + timestamp;
+    public String toString() {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // Formato de fecha
+        return "Review{ ID = " + ID + 
+        ", ProductID = " + productID + 
+        ", UserID = " + userID + 
+        ", ProfileName = " + profileName + 
+        ", HelpfulnessNumerator = " + helpfulnessNumerator + 
+        ", HelpfulnessDenominator = " + helpfulnessDenominator +
+        ", Score = " + score + 
+        ", TimeStamp = " + formato.format(timeStamp) + 
+        ", Summary = " + summary + 
+        ", Text = " + text + " }";
     }
 
     public static List<Taller4> leerCsv(String ruta){
         List<Taller4> reviews = new ArrayList<>();
+        BufferedReader br = null;
+        String line = "";
+        String simboloSeparar = ",";
+        String[] data;
 
         try {
-            String linea;
-            String[] campos;
-            String productID, userID;
-            int score;
-            long timestamp;
+            br = new BufferedReader(new FileReader(ruta));
 
-            while((linea = br.readLine()) != null){
-
+            while((line = br.readLine()) != null){
+                data = line.split(simboloSeparar);
+                reviews.add(new Taller4(data[0], data[1], data[2], data[3], Integer.parseInt(data[4]), Integer.parseInt(data[5]), Integer.parseInt(data[6]), Long.parseLong(data[7]), data[8], data[9]));
             }
-        } catch (Exception e) {
-            
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            if(br != null){
+                try {
+                    br.close();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+
+        return reviews;
+
     }
 }
