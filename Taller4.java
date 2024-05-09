@@ -12,6 +12,9 @@ import java.util.TreeMap;
 
 import edu.princeton.cs.algs4.StdOut;
 
+//Trabajo realizado por: Johnson Chen Yu
+// ID: 000174359
+
 public class Taller4 {
     private String ID;
     private String productID;
@@ -240,8 +243,15 @@ public class Taller4 {
         }
 
         //Uso de listarTopM por rango
-        Date fechaInicial = new Date();
-        Date fechaFinal = new Date();
+        
+        // Quitar el comentario de abajo y comentar el date con fecha puesta si se quiere llegar a probar que no hay productos en el rango especificado
+        //Date fechaInicial = new Date();
+        //Date fechaFinal = new Date();
+        
+        //El metodo esta obsoleto, pero funciona
+        //Nota: para calcular el año, se debe restar 1900 por como esta diseñado la funcion de Date de java, si no se le aplica puede llegar a aparecer errores. Año 2013 = Año 3913 si NO se le realiza el (2013 - 1900)
+        Date fechaInicial = new Date(2000 - 1900, 0, 1); //Enero es 0 y Diciembre es 11
+        Date fechaFinal = new Date(2013 - 1900, 11, 31);
 
         int topMRango = 5; //Lo mismo que con lo de listar top, este numero se puede cambiar depende de la cantidad de productos que se quiera ver
 
