@@ -154,8 +154,6 @@ public class Taller4 {
         List<Map.Entry<String, Integer>> puntajesList = new ArrayList<>(puntajes.entrySet());
         puntajesList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
 
-        StdOut.println("Top-" + m + " Productos: ");
-
         for(int i = 0; i < Math.min(m, puntajesList.size()); i++){
             Map.Entry<String, Integer> entrada = puntajesList.get(i);
             StdOut.println("Producto: " + entrada.getKey() + ", Puntaje Total: " + entrada.getValue());
@@ -202,8 +200,13 @@ public class Taller4 {
             reviewsEnRango.addAll(list);
         }
 
-        puntajesEnRango = puntajeTotal(reviewsEnRango);
-        listarTopM(puntajesEnRango, m);
+        //Un pequeño manejo de errores con respecto a las fechas, solo para que no aparezca vacia
+        if(reviewsEnRango.isEmpty()){
+            StdOut.println("No hay productos en el rango de fechas que se ha especificado");
+        } else {
+            puntajesEnRango = puntajeTotal(reviewsEnRango);
+            listarTopM(puntajesEnRango, m);
+        }
 
     }
 
@@ -239,9 +242,10 @@ public class Taller4 {
         //Uso de listarTopM por rango
         Date fechaInicial = new Date();
         Date fechaFinal = new Date();
+
         int topMRango = 5; //Lo mismo que con lo de listar top, este numero se puede cambiar depende de la cantidad de productos que se quiera ver
 
-        StdOut.println("\nTop-" + topMRango + " productos en el rango de fechas: ");
+        StdOut.println("\nTop-" + topMRango + " productos en el rango de fechas de: " + fechaInicial + " y " + fechaFinal);
         listarTopMPorRango(puntajesTotales, reviewsPorFecha, fechaInicial, fechaFinal, topMRango);
     }
 }
